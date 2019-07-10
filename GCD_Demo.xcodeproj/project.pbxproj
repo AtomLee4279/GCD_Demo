@@ -286,7 +286,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = CH78CKY35H;
+				DEVELOPMENT_TEAM = X9TK7NG249;
 				INFOPLIST_FILE = GCD_Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -294,7 +294,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GCD.GCD-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = debug_0314_dev;
+				PROVISIONING_PROFILE_SPECIFIER = dev_20190321;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -303,8 +303,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = X9TK7NG249;
 				INFOPLIST_FILE = GCD_Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -312,7 +313,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GCD.GCD-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = dis_20190321;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

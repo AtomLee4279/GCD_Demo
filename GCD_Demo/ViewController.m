@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self asyncConcurrent];
+    [self asyncConcurrent];
     
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -61,11 +61,11 @@
         }
         
     });
-    //执行结果：1.任务都是在主线程上运行；2.任务按顺序执行
+    //执行结果：因为是同步执行，1.任务都是在主线程上运行；2.任务按顺序执行
     NSLog(@"======syncConcurrent--end===========");
 }
 
-//异步执行+并发队列
+//异步执行+并发队列:会开启新线程
 -(void)asyncConcurrent{
     NSLog(@"====currentThrread%@====",[NSThread currentThread]);
     NSLog(@"====asyncConcurrent-begin====");
