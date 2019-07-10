@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self asyncConcurrent];
+    [self barrier];
     
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -154,13 +154,43 @@
 }
 
 
-//线程间通信
+//线程间通信（多线程嵌套）
 -(void)threadCommunication{
     //获取全局并发队列
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     //获取主队列
     dispatch_queue_t mainqueue = dispatch_get_main_queue();
 
+}
+
+
+
+//栅栏函数初探
+-(void)barrier{
+    dispatch_queue_t concurrentQueue = dispatch_queue_create("GCD_ConcurrentQueue", DISPATCH_QUEUE_CONCURRENT);
+    for (NSInteger i = 0; i < 10; i++) {
+        
+        dispatch_sync(concurrentQueue, ^{
+            
+            NSLog(@"%zd",i);
+        });
+    }
+    
+    //注意，这里如果是“dispatch_barrier_async”，则会先打印下面的“===After Barrier=====”再执行自身block里的“barrier”
+    dispatch_barrier_async(concurrentQueue, ^{
+        
+        NSLog(@"barrier");
+    });
+    
+    NSLog(@"===After Barrier=====");
+    
+    for (NSInteger i = 10; i < 20; i++) {
+        
+        dispatch_sync(concurrentQueue, ^{
+            
+            NSLog(@"%zd",i);
+        });
+    }
 }
 
 
