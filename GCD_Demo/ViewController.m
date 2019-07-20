@@ -165,9 +165,11 @@
 
 
 
-//栅栏函数初探
+//栅栏函数初探:在执行完栅栏前面的(同步/异步)操作之后，才执行栅栏操作，最后再执行栅栏后边的（同步/异步）操作。
 -(void)barrier{
     dispatch_queue_t concurrentQueue = dispatch_queue_create("GCD_ConcurrentQueue", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t serialQueue = dispatch_queue_create("GCD_SerialQueue", DISPATCH_QUEUE_SERIAL);
+    
     for (NSInteger i = 0; i < 10; i++) {
         
         dispatch_sync(concurrentQueue, ^{
@@ -177,7 +179,7 @@
     }
     
     //注意，这里如果是“dispatch_barrier_async”，则会先打印下面的“===After Barrier=====”再执行自身block里的“barrier”
-    dispatch_barrier_async(concurrentQueue, ^{
+    dispatch_barrier_sync(concurrentQueue, ^{
         
         NSLog(@"barrier");
     });
@@ -191,6 +193,8 @@
             NSLog(@"%zd",i);
         });
     }
+    
+    
 }
 
 
